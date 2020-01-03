@@ -1,20 +1,24 @@
-const initialState = {
-    age:20
+const INITIAL_STATE = {
+  age: 0
 };
 
-const reducer = (state=initialState, action) => {
-    const newState = {...state};
+//reducers listens and catch for the new actions provided by the saga and pass it to the components..
+const reducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case "AGE_UP_NEW":
+      return {
+        ...state,
+        age: (state.age += action.value)
+      };
 
-    switch(action.type){
-        case 'AGE_UP': 
-            newState.age += action.value;
-            break;
-        
-        case 'AGE_DOWN': 
-            newState.age -= action.value;
-            break;
-    }
-    return newState;
+    case "AGE_DOWN_NEW":
+      return {
+        ...state,
+        age: (state.age -= action.value)
+      };
+    default:
+      return state;
+  }
 };
 
 export default reducer;

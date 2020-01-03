@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 
 class App extends Component {
   render() {
+    const { age, onAgeDown, onAgeUp } = this.props;
     return (
       <div className="App">
         <div className="Age-label">
-          your age: <span>{this.props.age}</span>
+          your age: <span>{age}</span>
         </div>
-        <button onClick={this.props.onAgeUp}>Age UP</button>
-        <button onClick={this.props.onAgeDown}>Age Down</button>
+        <button onClick={onAgeUp}>Age UP</button>
+        <button onClick={onAgeDown}>Age Down</button>
       </div>
     );
   }
@@ -28,7 +29,4 @@ const mapDispachToProps = dispatch => {
     onAgeDown: () => dispatch({ type: "AGE_DOWN", value: 1 })
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispachToProps
-)(App);
+export default connect(mapStateToProps, mapDispachToProps)(App);
